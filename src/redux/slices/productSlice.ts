@@ -4,7 +4,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { productURL } from "./../../helper/api";
 import request from "../../helper/request";
 
-type items = {
+//  typed each items in porducts
+export type Items = {
   dislikes: string;
   id: string;
   likes: string;
@@ -12,28 +13,32 @@ type items = {
   src: string;
   title: string;
 };
-type mainProduct = {
+// main products type with each item typed
+type MainProduct = {
   title: string;
-  items: items[];
+  items: Items[];
 };
-type initialType = {
-  mainProducts: null | mainProduct[];
+// slice initial type
+type InitialType = {
+  mainProducts: null | MainProduct[];
   selectedProduct: any;
   loading: boolean;
   error: boolean;
 };
-const initialState: initialType = {
+const initialState: InitialType = {
   mainProducts: null,
   selectedProduct: null,
   loading: false,
   error: false,
 };
-export const getProducts = createAsyncThunk<any, string>(
+// getting all products ,include top and etc
+export const getProducts = createAsyncThunk(
   "products/getProducts",
   async (token: string): Promise<any> => {
     return request("GET", productURL, null, token).then((resp) => resp.data);
   }
 );
+
 const productsSlice = createSlice({
   name: "products",
   initialState,

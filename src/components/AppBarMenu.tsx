@@ -13,7 +13,9 @@ type propsType = {
 };
 function AppBarMenu({ handleShowCategories }: propsType) {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box
+      sx={{ flexGrow: 1, position: "fixed", top: 0, zIndex: 2, width: "100%" }}
+    >
       <AppBar position="static">
         <Toolbar>
           <IconButton

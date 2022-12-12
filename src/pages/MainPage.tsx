@@ -3,16 +3,14 @@ import { getProducts, productsSelector } from "../redux/slices/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 import Header from "../components/Header";
+import TopSellers from "../components/TopSellers";
 import { getCategories } from "../redux/slices/categoriesSlice";
 import { tokenSelector } from "../redux/slices/userSlice";
 import withUser from "../components/HOC/withUser";
 
 function MainPage() {
   const dispatch = useAppDispatch();
-  const products = useAppSelector(productsSelector);
   const token = useAppSelector(tokenSelector);
-  console.log(products);
-
   useEffect(() => {
     if (token) {
       dispatch(getProducts(token));
@@ -22,6 +20,7 @@ function MainPage() {
   return (
     <>
       <Header />
+      <TopSellers />
     </>
   );
 }
