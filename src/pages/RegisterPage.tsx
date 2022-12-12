@@ -1,3 +1,5 @@
+import "../style/style.css";
+
 import React, { useEffect } from "react";
 import {
   RegisterType,
@@ -12,7 +14,9 @@ function RegisterPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector(userSelector);
-
+  useEffect(() => {
+    if (user) navigate("/");
+  }, [user, navigate]);
   const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -24,21 +28,30 @@ function RegisterPage() {
     dispatch(registerUser(userData));
     e.currentTarget.reset();
   };
-  useEffect(() => {
-    if (user) navigate("/");
-  }, [user, navigate]);
+  const goLoginPage = () => {
+    navigate("/login");
+  };
   return (
     <div id="fullRegister">
-      <form onSubmit={handleRegister}>
-        <input type="text" name="fullname" placeholder="write yourfullName" />
-        <input type="text" name="email" placeholder="write your email" />
-        <input
-          type="password"
-          name="password"
-          placeholder="write your password"
-        />
-        <button className="registerButton">Register</button>
-      </form>
+      <div className="mainRegister">
+        <form onSubmit={handleRegister} className="registerForm">
+          <input
+            type="text"
+            name="fullname"
+            placeholder="write your fullname"
+          />
+          <input type="text" name="email" placeholder="write your email" />
+          <input
+            type="password"
+            name="password"
+            placeholder="write your password"
+          />
+          <button className="registerButton">Register</button>
+          <p className="toLogin" onClick={goLoginPage}>
+            I have an account
+          </p>
+        </form>
+      </div>
     </div>
   );
 }

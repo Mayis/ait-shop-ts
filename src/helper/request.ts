@@ -3,16 +3,16 @@ import axios from "axios";
 type OptionType = {
   method: string;
   url: string;
-  data: object | string;
+  data: object | string | null;
   headers: {
     Authorization: string;
   };
 };
 
-export default function request(
+export default async function request(
   method: string,
   url: string,
-  body: object | string,
+  body: object | string | null,
   token?: string
 ): Promise<any> {
   const options: OptionType = {
@@ -20,7 +20,7 @@ export default function request(
     url,
     data: body,
     headers: {
-      Authorization: "Bearer" + token,
+      Authorization: "Bearer " + token,
     },
   };
   return axios

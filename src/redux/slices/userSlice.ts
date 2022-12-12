@@ -77,3 +77,4 @@ const userSlice = createSlice({
 
 export default userSlice.reducer;
 export const userSelector = (state: RootState) => state.user.user;
+export const tokenSelector = (state: RootState) => state.user.user?.token;

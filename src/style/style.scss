@@ -24,6 +24,8 @@
         width: 350px;
         height: 40px;
         margin: 5px;
+        border: none;
+        border-bottom: 1px solid grey;
         &::placeholder {
           text-align: center;
           font-size: 16px;
@@ -48,6 +50,59 @@
         transition: 0.3s;
         &:hover {
           color: rgb(8, 34, 185);
+          transition: 0.3s;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+#fullRegister {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .mainRegister {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .registerForm {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      input {
+        width: 350px;
+        height: 40px;
+        margin: 5px;
+        border: none;
+        border-bottom: 1px solid gray;
+        &::placeholder {
+          text-align: center;
+          font-size: 16px;
+        }
+      }
+      .registerButton {
+        width: 150px;
+        height: 50px;
+        border: none;
+        border-radius: 10px;
+        background-color: rgb(48, 151, 235);
+        transition: 0.3s;
+        &:hover {
+          background-color: rgb(6, 94, 194);
+          transition: 0.3s;
+        }
+      }
+      .toLogin {
+        font-size: 15px;
+        text-decoration: underline;
+        color: rgb(247, 58, 58);
+        transition: 0.3s;
+        &:hover {
+          color: rgb(223, 4, 4);
           transition: 0.3s;
           cursor: pointer;
         }
