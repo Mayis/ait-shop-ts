@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import { Provider } from "react-redux";
-import React from "react";
 import RegisterPage from "./pages/RegisterPage";
 import store from "./redux/store";
 
