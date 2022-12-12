@@ -8,10 +8,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
-type propsType = {
+type PropsType = {
   handleShowCategories: () => void;
+  appUserLogout: () => void;
 };
-function AppBarMenu({ handleShowCategories }: propsType) {
+function AppBarMenu({ handleShowCategories, appUserLogout }: PropsType) {
   return (
     <Box
       sx={{ flexGrow: 1, position: "fixed", top: 0, zIndex: 2, width: "100%" }}
@@ -31,7 +32,9 @@ function AppBarMenu({ handleShowCategories }: propsType) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             shop ait
           </Typography>
-          <Button color="inherit">Logout</Button>
+          <Button color="inherit" onClick={appUserLogout}>
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>
