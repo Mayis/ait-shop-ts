@@ -1,35 +1,34 @@
-import {
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Typography,
-} from "@mui/material";
+import { Divider, Drawer, List, ListItem, ListItemText } from "@mui/material";
 import React, { memo } from "react";
+import {
+  allCategoriesSelector,
+  categoryType,
+} from "../redux/slices/categoriesSlice";
+
+import { useAppSelector } from "../redux/hooks";
 
 type propsType = {
   showCategories: boolean;
   closeCategories: () => void;
 };
 function Categories({ showCategories, closeCategories }: propsType) {
+  const allCategories = useAppSelector(allCategoriesSelector);
+  console.log(allCategories);
+
   return (
     //
     <Drawer anchor="left" open={showCategories} onClose={closeCategories}>
-      <List sx={{ width: "450px" }}>
+      <List sx={{ width: "200px" }}>
         <ListItem>
           <ListItemText primary="Categories" />
         </ListItem>
         <Divider />
 
-        <ListItem>
-          <Typography sx={{ fontWeight: "700" }}>someCategories</Typography>
-          {/* <IconButton sx={{ position: "absolute", right: "5px" }}>
-          <PaidIcon color="success" fontSize="large" />
-        </IconButton> */}
-        </ListItem>
+        {allCategories?.map((category: categoryType) => (
+          <ListItem sx={{ fontWeight: "700" }} key={category.id}>
+            {category.title}
+          </ListItem>
+        ))}
       </List>
     </Drawer>
   );

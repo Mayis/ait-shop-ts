@@ -4,8 +4,20 @@ import { createSlice } from "@reduxjs/toolkit";
 import { productURL } from "./../../helper/api";
 import request from "../../helper/request";
 
+type items = {
+  dislikes: string;
+  id: string;
+  likes: string;
+  price: number;
+  src: string;
+  title: string;
+};
+type mainProduct = {
+  title: string;
+  items: items[];
+};
 type initialType = {
-  mainProducts: any;
+  mainProducts: null | mainProduct[];
   selectedProduct: any;
   loading: boolean;
   error: boolean;
