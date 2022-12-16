@@ -1,9 +1,9 @@
 import ApiSlice from "../slice";
 
 export type Items = {
-  dislikes: string;
+  dislikes?: string;
   id: string;
-  likes: string;
+  likes?: string;
   price: number;
   src: string;
   title: string;
@@ -13,12 +13,16 @@ export type Products = {
   title: string;
   items: Items[];
 };
+export type CategoryProds = {
+  pagesCount: number;
+  items: Items[];
+};
 export default class ProductsSlice extends ApiSlice {
   static defaultAuth: boolean = true;
   static baseURL: string = ApiSlice.baseURL + "/products/";
 
   static GetProductsByCategory(id: string) {
-    return this.request(id);
+    return this.request<CategoryProds>(id);
   }
   static GetTopProducts() {
     return this.request<Products[]>("home");

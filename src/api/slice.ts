@@ -40,7 +40,6 @@ export default class ApiSlice {
     options: RequestOptions | null = null
   ): Promise<ResponseModel<T>> {
     let headers: { Authorization?: string } = {};
-    console.log(localStorage.getItem("accessToken"));
     if (this.defaultAuth || options?.auth) {
       headers.Authorization = `Bearer ${
         localStorage.getItem("accessToken") || process.env.TEST_TOKEN
