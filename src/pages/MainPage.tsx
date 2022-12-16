@@ -1,27 +1,21 @@
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-
+import Api from "../api";
 import TopProducts from "../components/TopProducts";
 import TopSellers from "../components/TopSellers";
-import { getCategories } from "../redux/slices/categoriesSlice";
-import { getProducts } from "../redux/slices/productSlice";
-import { tokenSelector } from "../redux/slices/userSlice";
-import { useEffect } from "react";
 import withUser from "../components/HOC/withUser";
 
 function MainPage() {
-  const dispatch = useAppDispatch();
-  const token = useAppSelector(tokenSelector);
-  useEffect(() => {
-    if (token) {
-      dispatch(getProducts(token));
-      dispatch(getCategories(token));
-    }
-  }, [dispatch, token]);
+  const { data, success, loading } = Api.useApi(() =>
+    Api.products.GetTopProducts()
+  );
+  console.log(data);
+
   return (
-    <>
-      <TopSellers />
-      <TopProducts />
-    </>
+    data && (
+      <>
+        <TopSellers tops={data![0]} />
+        <TopProducts topOne={data![1]} topTwo={data![2]} />
+      </>
+    )
   );
 }
 

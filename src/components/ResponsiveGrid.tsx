@@ -2,13 +2,13 @@ import "./style/style.css";
 
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { Items } from "../redux/slices/productSlice";
+import { Items } from "../api/slices/products";
 
-type ItemsProps = {
+type Props = {
   items: Items[];
 };
 
-export default function ResponsiveGrid({ items }: ItemsProps) {
+export default function ResponsiveGrid({ items }: Props) {
   return (
     <Box sx={{ flexGrow: 1, padding: "15px 0px" }}>
       <Grid

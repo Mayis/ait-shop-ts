@@ -6,7 +6,7 @@ import "./style/style.css";
 import { Autoplay, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Items } from "../../redux/slices/productSlice";
+import { Items } from "../../api/slices/products";
 
 // MUI
 

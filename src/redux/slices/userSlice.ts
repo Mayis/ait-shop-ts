@@ -1,8 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginURL, registerURL } from "./../../helper/api";
 
+import AuthSlice from "../../api/slices/auth";
 import { RootState } from "./../store";
-import request from "../../helper/request";
 
 type Info = {
   fullname?: string;
@@ -36,13 +35,13 @@ const initialState: UserType = {
 export const getUser = createAsyncThunk<Info, LoginType>(
   "user/getUser",
   async (info: LoginType): Promise<any> => {
-    return request("POST", loginURL, info).then((resp) => resp.data);
+    return AuthSlice.Login(info).then((resp) => resp.data);
   }
 );
 export const registerUser = createAsyncThunk(
   "user/registerUser",
-  async (info: RegisterType): Promise<Info> => {
-    return request("POST", registerURL, info).then((resp) => resp.data);
+  async (info: RegisterType): Promise<any> => {
+    return AuthSlice.Register(info).then((resp) => resp.data);
   }
 );
 
@@ -62,6 +61,7 @@ const userSlice = createSlice({
       .addCase(getUser.fulfilled, (state, action: PayloadAction<Info>) => {
         state.loading = false;
         state.user = action.payload;
+        localStorage.setItem("accessToken", action.payload.token);
       })
       .addCase(getUser.rejected, (state) => {
         state.error = true;
@@ -71,6 +71,7 @@ const userSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action: PayloadAction<Info>) => {
         state.loading = false;
+        localStorage.setItem("accessToken", action.payload.token);
         state.user = action.payload;
       })
       .addCase(registerUser.rejected, (state) => {

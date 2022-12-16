@@ -1,27 +1,25 @@
 import "./style/style.css";
 
 import { Container } from "@mui/system";
+import { Products } from "../api/slices/products";
 import ResponsiveGrid from "./ResponsiveGrid";
-import { productsSelector } from "../redux/slices/productSlice";
-import { useAppSelector } from "../redux/hooks";
 
-function TopProducts() {
-  const [, productOne, productTwo] = useAppSelector(productsSelector) || [];
-  console.log(productOne, productTwo);
-
+type Props = {
+  topOne: Products;
+  topTwo: Products;
+};
+function TopProducts({ topOne, topTwo }: Props) {
   return (
-    productOne && (
-      <Container>
-        <div id="topProduct">
-          <h2 className="topProductTitle">{productOne.title}</h2>
-          <ResponsiveGrid items={productOne.items} />
-        </div>
-        <div id="topProduct">
-          <h2 className="topProductTitle">{productTwo.title}</h2>
-          <ResponsiveGrid items={productTwo.items} />
-        </div>
-      </Container>
-    )
+    <Container>
+      <div id="topProduct">
+        <h2 className="topProductTitle">{topOne.title}</h2>
+        <ResponsiveGrid items={topOne.items} />
+      </div>
+      <div id="topProduct">
+        <h2 className="topProductTitle">{topTwo.title}</h2>
+        <ResponsiveGrid items={topTwo.items} />
+      </div>
+    </Container>
   );
 }
 

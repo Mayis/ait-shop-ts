@@ -1,19 +1,18 @@
 import { Divider, Drawer, List, ListItem, ListItemText } from "@mui/material";
-import React, { memo } from "react";
-import {
-  allCategoriesSelector,
-  categoryType,
-} from "../redux/slices/categoriesSlice";
 
-import { useAppSelector } from "../redux/hooks";
+import Api from "../api";
+import { Category } from "../api/slices/categories";
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 
-type propsType = {
+type PropsType = {
   showCategories: boolean;
   closeCategories: () => void;
 };
-function Categories({ showCategories, closeCategories }: propsType) {
-  const allCategories = useAppSelector(allCategoriesSelector);
+function Categories({ showCategories, closeCategories }: PropsType) {
+  const { data, success, loading } = Api.useApi(() =>
+    Api.categories.GetCategories()
+  );
   const navigate = useNavigate();
   const handleSelect = (categoryId: string): void => {
     navigate(`/category/${categoryId}`);
@@ -28,7 +27,7 @@ function Categories({ showCategories, closeCategories }: propsType) {
         </ListItem>
         <Divider />
 
-        {allCategories?.map((category: categoryType) => (
+        {data?.map((category: Category) => (
           <ListItem
             sx={{ fontWeight: "700", cursor: "pointer" }}
             key={category.id}
