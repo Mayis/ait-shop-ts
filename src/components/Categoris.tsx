@@ -6,6 +6,7 @@ import {
 } from "../redux/slices/categoriesSlice";
 
 import { useAppSelector } from "../redux/hooks";
+import { useNavigate } from "react-router-dom";
 
 type propsType = {
   showCategories: boolean;
@@ -13,7 +14,10 @@ type propsType = {
 };
 function Categories({ showCategories, closeCategories }: propsType) {
   const allCategories = useAppSelector(allCategoriesSelector);
-  console.log(allCategories);
+  const navigate = useNavigate();
+  const handleSelect = (categoryId: string): void => {
+    navigate(`/category/${categoryId}`);
+  };
 
   return (
     //
@@ -25,7 +29,11 @@ function Categories({ showCategories, closeCategories }: propsType) {
         <Divider />
 
         {allCategories?.map((category: categoryType) => (
-          <ListItem sx={{ fontWeight: "700" }} key={category.id}>
+          <ListItem
+            sx={{ fontWeight: "700", cursor: "pointer" }}
+            key={category.id}
+            onClick={() => handleSelect(category.id)}
+          >
             {category.title}
           </ListItem>
         ))}

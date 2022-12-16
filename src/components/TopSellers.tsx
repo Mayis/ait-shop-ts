@@ -5,7 +5,6 @@ import { useAppSelector } from "../redux/hooks";
 
 function TopSellers() {
   const [topSellers] = useAppSelector(productsSelector) || [];
-
   return topSellers && <CaruselSlider items={topSellers.items} />;
 }
 

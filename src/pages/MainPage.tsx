@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { getProducts, productsSelector } from "../redux/slices/productSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
-import Header from "../components/Header";
+import TopProducts from "../components/TopProducts";
 import TopSellers from "../components/TopSellers";
 import { getCategories } from "../redux/slices/categoriesSlice";
+import { getProducts } from "../redux/slices/productSlice";
 import { tokenSelector } from "../redux/slices/userSlice";
+import { useEffect } from "react";
 import withUser from "../components/HOC/withUser";
 
 function MainPage() {
@@ -19,8 +19,8 @@ function MainPage() {
   }, [dispatch, token]);
   return (
     <>
-      <Header />
       <TopSellers />
+      <TopProducts />
     </>
   );
 }
