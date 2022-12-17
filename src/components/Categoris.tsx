@@ -10,10 +10,10 @@ type PropsType = {
   closeCategories: () => void;
 };
 function Categories({ showCategories, closeCategories }: PropsType) {
+  const navigate = useNavigate();
   const { data, success, loading } = Api.useApi(() =>
     Api.categories.GetCategories()
   );
-  const navigate = useNavigate();
   const handleSelect = (categoryId: string): void => {
     navigate(`/category/${categoryId}`);
   };
