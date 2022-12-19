@@ -26,4 +26,35 @@
   border-bottom: 2px solid black;
   width: 100%;
   padding: 10px;
+}
+
+#basketItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: rgb(209, 209, 209);
+  width: 100%;
+  height: 200px;
+  margin: 10px;
+  border-radius: 8px;
+}
+#basketItem .imgDiv {
+  width: 200px;
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: white;
+}
+#basketItem .imgDiv img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+#basketItem .incrAndDecr {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 180px;
 }/*# sourceMappingURL=style.css.map */

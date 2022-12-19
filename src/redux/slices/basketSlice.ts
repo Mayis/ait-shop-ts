@@ -1,10 +1,10 @@
+import BasketSlice, { Product } from "../../api/slices/basket";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import BasketSlice from "../../api/slices/basket";
 import { RootState } from "../store";
 
 type InitialType = {
-  products: any;
+  products: Product[] | null;
   loading: boolean;
   error: boolean;
 };

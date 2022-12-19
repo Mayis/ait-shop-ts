@@ -25,3 +25,32 @@
     padding: 10px;
   }
 }
+#basketItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: rgb(209, 209, 209);
+  width: 100%;
+  height: 200px;
+  margin: 10px;
+  border-radius: 8px;
+  .imgDiv {
+    width: 200px;
+    height: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: white;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  .incrAndDecr {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 180px;
+  }
+}

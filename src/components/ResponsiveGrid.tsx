@@ -39,7 +39,7 @@ export default function ResponsiveGrid({ items }: Props) {
               <Button
                 onClick={() => handleAddBasket(item.id)}
                 variant="contained"
-                sx={{ position: "absolute", zIndex: 2, right: 10, bottom: 10 }}
+                sx={{ position: "absolute", zIndex: 1, right: 10, bottom: 10 }}
               >
                 <ShoppingCartIcon />
               </Button>
