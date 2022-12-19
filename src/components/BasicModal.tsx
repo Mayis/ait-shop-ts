@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import { useAppDispatch } from "../redux/hooks";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { userLogout } from "../redux/slices/userSlice";
 
@@ -22,6 +23,7 @@ type Props = {
   handleClose: () => void;
 };
 export default function BasicModal({ open, handleClose }: Props) {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const logoutUser = () => {
     dispatch(userLogout());

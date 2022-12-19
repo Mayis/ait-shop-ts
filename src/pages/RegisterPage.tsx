@@ -29,7 +29,7 @@ function RegisterPage() {
     e.currentTarget.reset();
   };
   const goLoginPage = () => {
-    navigate("/login");
+    navigate("/auth/login");
   };
   return (
     <div id="fullRegister">

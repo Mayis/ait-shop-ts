@@ -13,7 +13,7 @@ export default function withUser(OriginalComponent: React.FC) {
     const [isRendered, setIsRendered] = useState(false);
 
     useEffect(() => {
-      if (!user) navigate("/login");
+      if (!user) navigate("/auth/login");
       setIsRendered(true);
     }, [user, navigate]);
 

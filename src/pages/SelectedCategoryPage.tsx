@@ -3,6 +3,7 @@ import { Container } from "@mui/system";
 import Loading from "../components/Loading";
 import MultiProductCard from "../components/ProductCard";
 import { useParams } from "react-router-dom";
+import withUser from "../components/HOC/withUser";
 
 function SelectedCategoryPage() {
   const { categoryId } = useParams();
@@ -20,4 +21,4 @@ function SelectedCategoryPage() {
   );
 }
 
-export default SelectedCategoryPage;
+export default withUser(SelectedCategoryPage);

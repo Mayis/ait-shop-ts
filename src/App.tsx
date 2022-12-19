@@ -14,9 +14,11 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
+          <Route path="/auth" element={<LoginPage />}>
+            <Route path="/auth/register" element={<RegisterPage />} />
+            <Route path="/auth/login" element={<LoginPage />} />
+          </Route>
           <Route path="/" element={<MainPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
           <Route path="/category" element={<SelectedCategoryPage />}>
             <Route path=":categoryId" element={<SelectedCategoryPage />} />
           </Route>

@@ -8,8 +8,6 @@ function MainPage() {
   const { data, success, loading } = Api.useApi(() =>
     Api.products.GetTopProducts()
   );
-  console.log(loading);
-
   return loading ? (
     <Loading />
   ) : (

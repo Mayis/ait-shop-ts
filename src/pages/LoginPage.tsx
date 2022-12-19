@@ -25,7 +25,7 @@ function LoginPage() {
     if (user) navigate("/");
   }, [user, navigate]);
   const goRegisterPage = () => {
-    navigate("/register");
+    navigate("/auth/register");
   };
   return (
     <div id="fullLogin">
