@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import BasketPage from "./pages/BasketPage";
 import Header from "./components/Header";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
@@ -22,6 +23,7 @@ function App() {
           <Route path="/category" element={<SelectedCategoryPage />}>
             <Route path=":categoryId" element={<SelectedCategoryPage />} />
           </Route>
+          <Route path="/basket" element={<BasketPage />} />
         </Routes>
       </BrowserRouter>
     </Provider>

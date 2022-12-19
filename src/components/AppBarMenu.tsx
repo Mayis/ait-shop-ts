@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +20,7 @@ function AppBarMenu({ handleShowCategories }: PropsType) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleHomePage = () => navigate("/");
+  const handleBasketPage = () => navigate("/basket");
   return (
     <>
       <Box
@@ -50,6 +52,15 @@ function AppBarMenu({ handleShowCategories }: PropsType) {
             >
               shop ait
             </Typography>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="basket"
+              onClick={handleBasketPage}
+            >
+              <ShoppingCartIcon />
+            </IconButton>
             <Button color="inherit" onClick={handleOpen}>
               Logout
             </Button>
