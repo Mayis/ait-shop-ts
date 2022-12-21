@@ -1,7 +1,11 @@
+import React, { memo } from "react";
+
 import { BasketProd } from "../api/slices/basket";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import { updateBasketCount } from "../redux/slices/basketSlice";
+import { useAppDispatch } from "../redux/hooks";
 
 type Props = {
   item: {
@@ -10,14 +14,22 @@ type Props = {
   };
 };
 function BasketItem({ item }: Props) {
-  const {
+  let {
     count,
     product: { id, price, src, title },
   } = item;
+  const dispatch = useAppDispatch();
+  const handleIncreseItem = () => {
+    dispatch(updateBasketCount({ product_id: id, action: "increase" }));
+  };
+  const handleDecreaseItem = () => {
+    dispatch(updateBasketCount({ product_id: id, action: "decrease" }));
+  };
+
   return (
     <div id="basketItem">
       <div className="delItem">
-        <IconButton>
+        <IconButton color="error">
           <RemoveCircleOutlineIcon fontSize="large" />
         </IconButton>
       </div>
@@ -25,15 +37,19 @@ function BasketItem({ item }: Props) {
         <img src={src} alt={title} />
       </div>
       <div className="incrAndDecr">
-        <Button variant="contained">+</Button>
+        <Button variant="contained" onClick={handleDecreaseItem}>
+          -
+        </Button>
         <h3>{count}</h3>
-        <Button variant="contained">-</Button>
+        <Button variant="contained" onClick={handleIncreseItem}>
+          +
+        </Button>
       </div>
       <div className="priceDiv">
-        <h3 className="priceH3">{count * price}$</h3>
+        <h3 className="priceH3">{(count * price).toFixed(1)}$</h3>
       </div>
     </div>
   );
 }
 
-export default BasketItem;
+export default memo(BasketItem);

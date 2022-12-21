@@ -6,11 +6,17 @@ import CardMedia from "@mui/material/CardMedia";
 import { Items } from "../api/slices/products";
 import React from "react";
 import Typography from "@mui/material/Typography";
+import { addToBasket } from "../redux/slices/basketSlice";
+import { useAppDispatch } from "../redux/hooks";
 
 type Props = {
   item: Items;
 };
 export default function MultiProductCard({ item }: Props) {
+  const dispatch = useAppDispatch();
+  const handleAddBasket = (id: string) => {
+    dispatch(addToBasket(id));
+  };
   return (
     <Card
       sx={{
@@ -46,7 +52,11 @@ export default function MultiProductCard({ item }: Props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => handleAddBasket(item.id)}
+        >
           ADD TO BUSKET
         </Button>
       </CardActions>

@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { basketProductsSelector, getBasket } from "../redux/slices/basketSlice";
+import {
+  basketMessageSelector,
+  basketProductsSelector,
+  deleteBasket,
+  getBasket,
+  purchaseBasket,
+} from "../redux/slices/basketSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 import BasketItem from "../components/BasketItem";
@@ -13,16 +19,23 @@ import Paper from "@mui/material/Paper";
 function BasketPage() {
   const dispatch = useAppDispatch();
   const products = useAppSelector(basketProductsSelector);
+  const message = useAppSelector(basketMessageSelector);
   useEffect(() => {
     dispatch(getBasket());
   }, []);
-  console.log(products);
-
+  const purchaseAll = () => {
+    dispatch(purchaseBasket());
+  };
+  const deleteAll = () => {
+    dispatch(deleteBasket());
+  };
   return (
     <>
       <Container sx={{ marginTop: "100px" }}>
         {products ? (
-          products.map((item, i) => <BasketItem item={item} key={`item${i}`} />)
+          products.map((item) => (
+            <BasketItem item={item} key={item.product.id} />
+          ))
         ) : (
           <Loading />
         )}
@@ -38,6 +51,7 @@ function BasketPage() {
         }}
       >
         <Button
+          onClick={deleteAll}
           variant="contained"
           color="error"
           startIcon={<DeleteIcon />}
@@ -46,6 +60,7 @@ function BasketPage() {
           Delete All
         </Button>
         <Button
+          onClick={purchaseAll}
           variant="contained"
           endIcon={<PaidIcon />}
           sx={{ margin: "5px" }}
