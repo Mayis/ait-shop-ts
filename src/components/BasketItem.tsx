@@ -37,7 +37,11 @@ function BasketItem({ item }: Props) {
         <img src={src} alt={title} />
       </div>
       <div className="incrAndDecr">
-        <Button variant="contained" onClick={handleDecreaseItem}>
+        <Button
+          variant="contained"
+          onClick={handleDecreaseItem}
+          disabled={count === 1}
+        >
           -
         </Button>
         <h3>{count}</h3>

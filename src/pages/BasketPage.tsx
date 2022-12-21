@@ -12,6 +12,7 @@ import BasketItem from "../components/BasketItem";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EmptyBasket from "../components/EmptyBasket";
 import Loading from "../components/Loading";
 import PaidIcon from "@mui/icons-material/Paid";
 import Paper from "@mui/material/Paper";
@@ -29,16 +30,14 @@ function BasketPage() {
   const deleteAll = () => {
     dispatch(deleteBasket());
   };
-  return (
+  console.log(message);
+
+  return products ? (
     <>
       <Container sx={{ marginTop: "100px" }}>
-        {products ? (
-          products.map((item) => (
-            <BasketItem item={item} key={item.product.id} />
-          ))
-        ) : (
-          <Loading />
-        )}
+        {products.map((item) => (
+          <BasketItem item={item} key={item.product.id} />
+        ))}
       </Container>
       <Paper
         sx={{
@@ -69,6 +68,8 @@ function BasketPage() {
         </Button>
       </Paper>
     </>
+  ) : (
+    <EmptyBasket />
   );
 }
 

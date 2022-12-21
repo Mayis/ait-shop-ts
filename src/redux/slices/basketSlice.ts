@@ -50,13 +50,13 @@ export const updateBasketCount = createAsyncThunk(
 export const purchaseBasket = createAsyncThunk(
   "basket/purchaseBasket",
   async (): Promise<any> => {
-    return BasketSlice.PurchaseBasket();
+    return BasketSlice.PurchaseBasket().then((resp) => resp.data);
   }
 );
 export const deleteBasket = createAsyncThunk(
   "basket/deleteBasket",
   async (): Promise<any> => {
-    return BasketSlice.DeleteBasket();
+    return BasketSlice.DeleteBasket().then((resp) => resp.data);
   }
 );
 const basketSlice = createSlice({
@@ -65,32 +65,45 @@ const basketSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // get basket ---------------
       .addCase(getBasket.pending, (state) => {
         state.loading = true;
       })
       .addCase(getBasket.fulfilled, (state, { payload }) => {
-        state.products = payload;
+        state.products = payload.length ? payload : null;
       })
       .addCase(getBasket.rejected, (state) => {
         state.error = true;
       })
+      // add to basket --------------------
       .addCase(addToBasket.pending, (state) => {
         state.loading = true;
+      })
+      .addCase(addToBasket.fulfilled, (state) => {
+        state.loading = false;
       })
       .addCase(addToBasket.rejected, (state) => {
         state.error = true;
       })
-      .addCase(delBasket.pending, (state) => {
+      // delete basket ----------------
+      .addCase(deleteBasket.pending, (state) => {
         state.loading = true;
       })
-      .addCase(delBasket.rejected, (state) => {
+      .addCase(deleteBasket.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.message = payload;
+        if (state.products) {
+          state.products = null;
+        }
+      })
+      .addCase(deleteBasket.rejected, (state) => {
         state.error = true;
       })
+      // update basket item count ------------------
       .addCase(updateBasketCount.pending, (state) => {
         state.loading = true;
       })
       .addCase(updateBasketCount.fulfilled, (state, { payload }) => {
-        state.message = payload;
         if (state.products)
           state.products = state.products.map((item) =>
             item.product.id === payload.product_id
@@ -103,8 +116,23 @@ const basketSlice = createSlice({
                 }
               : item
           );
+        state.loading = false;
       })
       .addCase(updateBasketCount.rejected, (state) => {
+        state.error = true;
+      })
+      // purchase basket ---------
+      .addCase(purchaseBasket.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(purchaseBasket.fulfilled, (state, { payload }) => {
+        state.message = payload;
+        if (state.products) {
+          state.products = null;
+        }
+        state.loading = false;
+      })
+      .addCase(purchaseBasket.rejected, (state) => {
         state.error = true;
       });
   },
