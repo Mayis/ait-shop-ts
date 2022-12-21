@@ -22,7 +22,7 @@ function LoginPage() {
     e.currentTarget.reset();
   };
   useEffect(() => {
-    if (user) navigate("/");
+    if (user) navigate("/products/home");
   }, [user, navigate]);
   const goRegisterPage = () => {
     navigate("/auth/register");

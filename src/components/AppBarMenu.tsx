@@ -19,7 +19,7 @@ function AppBarMenu({ handleShowCategories }: PropsType) {
   const navigate = useNavigate();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleHomePage = () => navigate("/");
+  const handleHomePage = () => navigate("/products/home");
   const handleBasketPage = () => navigate("/basket");
   return (
     <>

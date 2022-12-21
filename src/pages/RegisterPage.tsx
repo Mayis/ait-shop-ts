@@ -15,7 +15,7 @@ function RegisterPage() {
   const navigate = useNavigate();
   const user = useAppSelector(userSelector);
   useEffect(() => {
-    if (user) navigate("/");
+    if (user) navigate("/products/home");
   }, [user, navigate]);
   const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

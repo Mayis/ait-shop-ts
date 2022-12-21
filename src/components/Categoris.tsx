@@ -15,7 +15,7 @@ function Categories({ showCategories, closeCategories }: PropsType) {
     Api.categories.GetCategories()
   );
   const handleSelect = (categoryId: string): void => {
-    navigate(`/category/${categoryId}`);
+    navigate(`/products/${categoryId}`);
   };
 
   return (

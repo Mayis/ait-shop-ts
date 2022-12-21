@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function EmptyBasket() {
   const navigate = useNavigate();
   const handleHomePage = () => {
-    navigate("/");
+    navigate("/products/home");
   };
   return (
     <div className="emptyBasket">
