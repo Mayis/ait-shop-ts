@@ -1,10 +1,10 @@
+import ProductsSlice, { CurrentProductType } from '../../api/slices/products';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import ProductsSlice from '../../api/slices/products';
 import { RootState } from '../store';
 
 type initialType = {
-  product: any;
+  product: CurrentProductType | null;
   loading: boolean;
   error: boolean;
 };
@@ -47,6 +47,9 @@ const productSlice = createSlice({
       })
       .addCase(postComment.fulfilled, (state, { payload }) => {
         state.loading = false;
+      })
+      .addCase(postComment.rejected, (state) => {
+        state.error = true;
       });
   }
 });

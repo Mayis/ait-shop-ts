@@ -88,15 +88,19 @@ function SelectedProductPage() {
             </Button>
           </div>
           <Container sx={{ marginTop: '25px' }}>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <AccountCircleIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="Photos" />
-            </ListItem>
-            <Divider variant="inset" />
+            {product.comments.map(({ author, body }) => (
+              <>
+                <ListItem key={body}>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <AccountCircleIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={author.fullname} secondary={body} />
+                </ListItem>
+                <Divider variant="inset" />
+              </>
+            ))}
           </Container>
         </Container>
         <CommentFild open={open} handleClose={handleClose} id={product.id} />

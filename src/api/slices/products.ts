@@ -13,9 +13,23 @@ export type Products = {
   title: string;
   items: Items[];
 };
+// cateogry prdoucts type
 export type CategoryProds = {
   pagesCount: number;
   items: Items[];
+};
+// current product and its features types
+type CommentsType = { author: { fullname: string }; body: string };
+type ReactionType = { likes: null | number; dislikes: null | number; yourReaction: null | number };
+
+export type CurrentProductType = {
+  comments: CommentsType[];
+  description: string;
+  id: string;
+  price: number;
+  reaction: ReactionType;
+  src: string;
+  title: string;
 };
 export default class ProductsSlice extends ApiSlice {
   static defaultAuth = true;
