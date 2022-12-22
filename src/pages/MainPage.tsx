@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import Api from '../api';
 import Loading from '../components/Loading';
 import TopProducts from '../components/TopProducts';
@@ -5,7 +7,7 @@ import TopSellers from '../components/TopSellers';
 import withUser from '../components/HOC/withUser';
 
 function MainPage() {
-  const { data, success, loading } = Api.useApi(() => Api.products.GetTopProducts());
+  const { data, loading } = Api.useApi(() => Api.products.GetTopProducts());
   return loading ? (
     <Loading />
   ) : (

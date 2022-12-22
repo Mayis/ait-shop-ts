@@ -11,7 +11,7 @@ type PropsType = {
 };
 function Categories({ showCategories, closeCategories }: PropsType) {
   const navigate = useNavigate();
-  const { data, success, loading } = Api.useApi(() => Api.categories.GetCategories());
+  const { data } = Api.useApi(() => Api.categories.GetCategories());
   const handleSelect = (categoryId: string): void => {
     navigate(`/products/${categoryId}`);
   };
@@ -29,8 +29,7 @@ function Categories({ showCategories, closeCategories }: PropsType) {
           <ListItem
             sx={{ fontWeight: '700', cursor: 'pointer' }}
             key={category.id}
-            onClick={() => handleSelect(category.id)}
-          >
+            onClick={() => handleSelect(category.id)}>
             {category.title}
           </ListItem>
         ))}

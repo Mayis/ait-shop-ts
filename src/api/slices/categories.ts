@@ -5,7 +5,7 @@ export type Category = {
   title: string;
 };
 export default class CategoriesSlice extends ApiSlice {
-  static defaultAuth: boolean = true;
+  static defaultAuth = true;
   static baseURL: string = ApiSlice.baseURL + '/categories/';
   static selectedCategoryURL: string = ApiSlice.baseURL + '/products';
 

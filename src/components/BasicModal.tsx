@@ -1,14 +1,11 @@
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import { useAppDispatch } from '../redux/hooks';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { userLogout } from '../redux/slices/userSlice';
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -23,7 +20,6 @@ type Props = {
   handleClose: () => void;
 };
 export default function BasicModal({ open, handleClose }: Props) {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const logoutUser = () => {
     dispatch(userLogout());
@@ -36,8 +32,7 @@ export default function BasicModal({ open, handleClose }: Props) {
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Do you want to Logout ?

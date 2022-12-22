@@ -14,8 +14,7 @@ export default function Loading() {
         width: '100%',
         position: 'absolute',
         zIndex: 3
-      }}
-    >
+      }}>
       <CircularProgress />
     </Box>
   );

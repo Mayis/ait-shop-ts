@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-
 import axios, { AxiosError, Method } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -29,8 +27,8 @@ type UseApi<T> = {
 };
 
 export default class ApiSlice {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  static baseURL: string = 'https://shop-api.aitschool.am';
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion,
+  static baseURL = 'https://shop-api.aitschool.am';
   static defaultAuth = false;
 
   static async request<T = unknown>(

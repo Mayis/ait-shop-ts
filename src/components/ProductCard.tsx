@@ -21,16 +21,14 @@ export default function MultiProductCard({ item }: Props) {
     <Card
       sx={{
         margin: '15px'
-      }}
-    >
+      }}>
       <CardActionArea
         sx={{
           display: 'flex',
           maxWidth: '100%',
           height: '300px',
           padding: '10px'
-        }}
-      >
+        }}>
         <CardMedia
           component="img"
           sx={{

@@ -30,8 +30,7 @@ function AppBarMenu({ handleShowCategories }: PropsType) {
           top: 0,
           zIndex: 2,
           width: '100%'
-        }}
-      >
+        }}>
         <AppBar position="static">
           <Toolbar>
             <IconButton
@@ -40,16 +39,14 @@ function AppBarMenu({ handleShowCategories }: PropsType) {
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
-              onClick={handleShowCategories}
-            >
+              onClick={handleShowCategories}>
               <MenuIcon />
             </IconButton>
             <Typography
               variant="h6"
               component="div"
               sx={{ flexGrow: 1, cursor: 'pointer' }}
-              onClick={handleHomePage}
-            >
+              onClick={handleHomePage}>
               shop ait
             </Typography>
             <IconButton
@@ -57,8 +54,7 @@ function AppBarMenu({ handleShowCategories }: PropsType) {
               edge="start"
               color="inherit"
               aria-label="basket"
-              onClick={handleBasketPage}
-            >
+              onClick={handleBasketPage}>
               <ShoppingCartIcon />
             </IconButton>
             <Button color="inherit" onClick={handleOpen}>

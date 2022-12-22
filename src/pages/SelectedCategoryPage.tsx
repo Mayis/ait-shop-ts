@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import Api from '../api';
 import { Container } from '@mui/system';
 import Loading from '../components/Loading';
@@ -7,7 +9,7 @@ import withUser from '../components/HOC/withUser';
 
 function SelectedCategoryPage() {
   const { categoryId } = useParams();
-  const { data, success, loading } = Api.useApi(() => {
+  const { data, loading } = Api.useApi(() => {
     return Api.products.GetProductsByCategory(categoryId!);
   }, [categoryId]);
   return loading ? (

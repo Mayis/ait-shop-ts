@@ -14,7 +14,7 @@ type Props = {
   };
 };
 function BasketItem({ item }: Props) {
-  let {
+  const {
     count,
     product: { id, price, src, title }
   } = item;

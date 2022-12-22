@@ -28,8 +28,7 @@ function CaruselSlider({ items }: Props) {
         }}
         navigation={true}
         modules={[Pagination, Navigation, Autoplay]}
-        className="mySwiper"
-      >
+        className="mySwiper">
         {items?.map((item, i) => (
           <SwiperSlide key={`item${i}`}>
             <img src={item.src} alt={item.title} />

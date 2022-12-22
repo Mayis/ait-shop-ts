@@ -11,7 +11,7 @@ export type Product = {
   product: BasketProd;
 };
 export default class BasketSlice extends ApiSlice {
-  static defaultAuth: boolean = true;
+  static defaultAuth = true;
   static baseURL: string = ApiSlice.baseURL + '/basket';
 
   static GetBasket() {

@@ -1,9 +1,7 @@
 import '../style/style.css';
-
 import { LoginType, getUser, userSelector } from '../redux/slices/userSlice';
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {

@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import {
   basketMessageSelector,
   basketProductsSelector,
@@ -13,9 +12,9 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EmptyBasket from '../components/EmptyBasket';
-import Loading from '../components/Loading';
 import PaidIcon from '@mui/icons-material/Paid';
 import Paper from '@mui/material/Paper';
+import { useEffect } from 'react';
 
 function BasketPage() {
   const dispatch = useAppDispatch();
@@ -47,23 +46,20 @@ function BasketPage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
-        }}
-      >
+        }}>
         <Button
           onClick={deleteAll}
           variant="contained"
           color="error"
           startIcon={<DeleteIcon />}
-          sx={{ margin: '5px' }}
-        >
+          sx={{ margin: '5px' }}>
           Delete All
         </Button>
         <Button
           onClick={purchaseAll}
           variant="contained"
           endIcon={<PaidIcon />}
-          sx={{ margin: '5px' }}
-        >
+          sx={{ margin: '5px' }}>
           Buy All
         </Button>
       </Paper>

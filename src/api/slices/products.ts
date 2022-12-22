@@ -18,7 +18,7 @@ export type CategoryProds = {
   items: Items[];
 };
 export default class ProductsSlice extends ApiSlice {
-  static defaultAuth: boolean = true;
+  static defaultAuth = true;
   static baseURL: string = ApiSlice.baseURL + '/products/';
 
   static GetProductsByCategory(id: string) {
