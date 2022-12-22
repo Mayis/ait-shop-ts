@@ -1,21 +1,17 @@
-import "../style/style.css";
+import '../style/style.css';
 
-import React, { useEffect } from "react";
-import {
-  RegisterType,
-  registerUser,
-  userSelector,
-} from "../redux/slices/userSlice";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import React, { useEffect } from 'react';
+import { RegisterType, registerUser, userSelector } from '../redux/slices/userSlice';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector(userSelector);
   useEffect(() => {
-    if (user) navigate("/products/home");
+    if (user) navigate('/products/home');
   }, [user, navigate]);
   const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,23 +25,15 @@ function RegisterPage() {
     e.currentTarget.reset();
   };
   const goLoginPage = () => {
-    navigate("/auth/login");
+    navigate('/auth/login');
   };
   return (
     <div id="fullRegister">
       <div className="mainRegister">
         <form onSubmit={handleRegister} className="registerForm">
-          <input
-            type="text"
-            name="fullname"
-            placeholder="write your fullname"
-          />
+          <input type="text" name="fullname" placeholder="write your fullname" />
           <input type="text" name="email" placeholder="write your email" />
-          <input
-            type="password"
-            name="password"
-            placeholder="write your password"
-          />
+          <input type="password" name="password" placeholder="write your password" />
           <button className="registerButton">Register</button>
           <p className="toLogin" onClick={goLoginPage}>
             I have an account

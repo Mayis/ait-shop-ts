@@ -1,12 +1,12 @@
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "./style/style.css";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import './style/style.css';
 
-import { Autoplay, Navigation, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Items } from "../../api/slices/products";
+import { Items } from '../../api/slices/products';
 
 // MUI
 
@@ -20,11 +20,11 @@ function CaruselSlider({ items }: Props) {
     <>
       <Swiper
         pagination={{
-          type: "progressbar",
+          type: 'progressbar'
         }}
         autoplay={{
           delay: 2500,
-          disableOnInteraction: false,
+          disableOnInteraction: false
         }}
         navigation={true}
         modules={[Pagination, Navigation, Autoplay]}

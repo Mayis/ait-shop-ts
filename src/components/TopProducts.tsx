@@ -1,8 +1,8 @@
-import "./style/style.css";
+import './style/style.css';
 
-import { Container } from "@mui/system";
-import { Products } from "../api/slices/products";
-import ResponsiveGrid from "./ResponsiveGrid";
+import { Container } from '@mui/system';
+import { Products } from '../api/slices/products';
+import ResponsiveGrid from './ResponsiveGrid';
 
 type Props = {
   topOne: Products;

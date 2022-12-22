@@ -1,13 +1,13 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import BasketPage from "./pages/BasketPage";
-import Header from "./components/Header";
-import LoginPage from "./pages/LoginPage";
-import MainPage from "./pages/MainPage";
-import { Provider } from "react-redux";
-import RegisterPage from "./pages/RegisterPage";
-import SelectedCategoryPage from "./pages/SelectedCategoryPage";
-import store from "./redux/store";
+import BasketPage from './pages/BasketPage';
+import Header from './components/Header';
+import LoginPage from './pages/LoginPage';
+import MainPage from './pages/MainPage';
+import { Provider } from 'react-redux';
+import RegisterPage from './pages/RegisterPage';
+import SelectedCategoryPage from './pages/SelectedCategoryPage';
+import store from './redux/store';
 
 function App() {
   return (
@@ -21,14 +21,8 @@ function App() {
           </Route>
           <Route path="/products">
             <Route path="/products/home" element={<MainPage />} />
-            <Route
-              path="/products/:categoryId"
-              element={<SelectedCategoryPage />}
-            />
+            <Route path="/products/:categoryId" element={<SelectedCategoryPage />} />
             <Route path="/products/current/:currentId" />
-          </Route>
-          <Route path="/category">
-            <Route path=":categoryId" element={<SelectedCategoryPage />} />
           </Route>
           <Route path="/basket" element={<BasketPage />} />
         </Routes>

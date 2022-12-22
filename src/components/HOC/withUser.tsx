@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useState } from "react";
-import { userSelector } from "../../redux/slices/userSlice";
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { userSelector } from '../../redux/slices/userSlice';
 
 export default function withUser(OriginalComponent: React.FC) {
   return function ComponentWithUser() {
@@ -13,7 +13,7 @@ export default function withUser(OriginalComponent: React.FC) {
     const [isRendered, setIsRendered] = useState(false);
 
     useEffect(() => {
-      if (!user) navigate("/auth/login");
+      if (!user) navigate('/auth/login');
       setIsRendered(true);
     }, [user, navigate]);
 

@@ -1,5 +1,5 @@
-import CaruselSlider from "./Slider/CaruselSlider";
-import { Products } from "../api/slices/products";
+import CaruselSlider from './Slider/CaruselSlider';
+import { Products } from '../api/slices/products';
 
 type Props = {
   tops: Products;

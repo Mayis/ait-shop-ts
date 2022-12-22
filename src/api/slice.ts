@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import axios, { AxiosError, Method } from "axios";
-import { useCallback, useEffect, useState } from "react";
+import axios, { AxiosError, Method } from 'axios';
+import { useCallback, useEffect, useState } from 'react';
 
 type ResponseModel<T = unknown> = {
   meta: {
@@ -30,19 +30,19 @@ type UseApi<T> = {
 
 export default class ApiSlice {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  static baseURL: string = "https://shop-api.aitschool.am";
+  static baseURL: string = 'https://shop-api.aitschool.am';
   static defaultAuth = false;
 
   static async request<T = unknown>(
-    url = "",
-    method: Method = "GET",
+    url = '',
+    method: Method = 'GET',
     payload: Record<string, unknown> | FormData | null = null,
     options: RequestOptions | null = null
   ): Promise<ResponseModel<T>> {
     let headers: { Authorization?: string } = {};
     if (this.defaultAuth || options?.auth) {
       headers.Authorization = `Bearer ${
-        localStorage.getItem("accessToken") || process.env.TEST_TOKEN
+        localStorage.getItem('accessToken') || process.env.TEST_TOKEN
       }`; // for most of requests;
     }
 
@@ -55,7 +55,7 @@ export default class ApiSlice {
           url: this.baseURL + url,
           headers,
           data: payload || {},
-          responseType: "json",
+          responseType: 'json'
         })) || {};
       return rsp.data;
     } catch (err) {
@@ -67,19 +67,16 @@ export default class ApiSlice {
 
   static async refreshToken() {
     const rsp = await ApiSlice.request<{ accessToken: string }>(
-      `/auth/refreshToken?refreshToken=${localStorage.getItem("refreshToken")}`
+      `/auth/refreshToken?refreshToken=${localStorage.getItem('refreshToken')}`
     );
     if (rsp.meta.error) return false;
-    localStorage.setItem("accessToken", rsp.data.accessToken);
+    localStorage.setItem('accessToken', rsp.data.accessToken);
     return true;
   }
 
   static handleWrongRefreshToken: null | (() => void) = null;
 
-  static useApi<T>(
-    fetcher: () => Promise<ResponseModel<T>>,
-    params?: unknown[]
-  ): UseApi<T> {
+  static useApi<T>(fetcher: () => Promise<ResponseModel<T>>, params?: unknown[]): UseApi<T> {
     const [data, setData] = useState<T | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setUseApiError] = useState<UseApiError | null>(null);
@@ -94,7 +91,7 @@ export default class ApiSlice {
         if (data) setData(null);
         setUseApiError({
           code: rsp.meta.error.code,
-          message: rsp.meta.error.message,
+          message: rsp.meta.error.message
         });
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -111,7 +108,7 @@ export default class ApiSlice {
       loading,
       success: Boolean(!loading && !error),
       error,
-      reload,
+      reload
     };
   }
 }

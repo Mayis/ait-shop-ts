@@ -1,7 +1,7 @@
-import BasketSlice, { Product } from "../../api/slices/basket";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import BasketSlice, { Product } from '../../api/slices/basket';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { RootState } from "../store";
+import { RootState } from '../store';
 
 type InitialType = {
   products: Product[] | null;
@@ -11,56 +11,40 @@ type InitialType = {
 };
 const initialState: InitialType = {
   products: null,
-  message: "",
+  message: '',
   loading: false,
-  error: false,
+  error: false
 };
 export const addToBasket = createAsyncThunk(
-  "basket/addToBasket",
+  'basket/addToBasket',
   async (product_id: string): Promise<any> => {
     return BasketSlice.AddToBasket(product_id).then((resp) => resp.data);
   }
 );
-export const getBasket = createAsyncThunk(
-  "basket/getBasket",
-  async (): Promise<any> => {
-    return BasketSlice.GetBasket().then((resp) => resp.data);
-  }
-);
-export const delBasket = createAsyncThunk(
-  "basket/delBasket",
-  async (): Promise<any> => {
-    return BasketSlice.DeleteBasket().then((resp) => resp.data);
-  }
-);
+export const getBasket = createAsyncThunk('basket/getBasket', async (): Promise<any> => {
+  return BasketSlice.GetBasket().then((resp) => resp.data);
+});
+export const delBasket = createAsyncThunk('basket/delBasket', async (): Promise<any> => {
+  return BasketSlice.DeleteBasket().then((resp) => resp.data);
+});
 export const updateBasketCount = createAsyncThunk(
-  "basket/updateBasketCount",
-  async ({
-    product_id,
-    action,
-  }: {
-    product_id: string;
-    action: string;
-  }): Promise<any> => {
-    return BasketSlice.UpdateBasketCount({ product_id, action }).then(
-      (resp) => ({ message: resp.data, product_id, action })
-    );
+  'basket/updateBasketCount',
+  async ({ product_id, action }: { product_id: string; action: string }): Promise<any> => {
+    return BasketSlice.UpdateBasketCount({ product_id, action }).then((resp) => ({
+      message: resp.data,
+      product_id,
+      action
+    }));
   }
 );
-export const purchaseBasket = createAsyncThunk(
-  "basket/purchaseBasket",
-  async (): Promise<any> => {
-    return BasketSlice.PurchaseBasket().then((resp) => resp.data);
-  }
-);
-export const deleteBasket = createAsyncThunk(
-  "basket/deleteBasket",
-  async (): Promise<any> => {
-    return BasketSlice.DeleteBasket().then((resp) => resp.data);
-  }
-);
+export const purchaseBasket = createAsyncThunk('basket/purchaseBasket', async (): Promise<any> => {
+  return BasketSlice.PurchaseBasket().then((resp) => resp.data);
+});
+export const deleteBasket = createAsyncThunk('basket/deleteBasket', async (): Promise<any> => {
+  return BasketSlice.DeleteBasket().then((resp) => resp.data);
+});
 const basketSlice = createSlice({
-  name: "basket",
+  name: 'basket',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -108,11 +92,8 @@ const basketSlice = createSlice({
           state.products = state.products.map((item) =>
             item.product.id === payload.product_id
               ? {
-                  count:
-                    payload.action === "increase"
-                      ? item.count + 1
-                      : item.count - 1,
-                  product: item.product,
+                  count: payload.action === 'increase' ? item.count + 1 : item.count - 1,
+                  product: item.product
                 }
               : item
           );
@@ -135,10 +116,9 @@ const basketSlice = createSlice({
       .addCase(purchaseBasket.rejected, (state) => {
         state.error = true;
       });
-  },
+  }
 });
 
 export default basketSlice.reducer;
-export const basketProductsSelector = (state: RootState) =>
-  state.basket.products;
+export const basketProductsSelector = (state: RootState) => state.basket.products;
 export const basketMessageSelector = (state: RootState) => state.basket.message;

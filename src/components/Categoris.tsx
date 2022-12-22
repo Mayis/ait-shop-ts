@@ -1,9 +1,9 @@
-import { Divider, Drawer, List, ListItem, ListItemText } from "@mui/material";
+import { Divider, Drawer, List, ListItem, ListItemText } from '@mui/material';
 
-import Api from "../api";
-import { Category } from "../api/slices/categories";
-import { memo } from "react";
-import { useNavigate } from "react-router-dom";
+import Api from '../api';
+import { Category } from '../api/slices/categories';
+import { memo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type PropsType = {
   showCategories: boolean;
@@ -11,9 +11,7 @@ type PropsType = {
 };
 function Categories({ showCategories, closeCategories }: PropsType) {
   const navigate = useNavigate();
-  const { data, success, loading } = Api.useApi(() =>
-    Api.categories.GetCategories()
-  );
+  const { data, success, loading } = Api.useApi(() => Api.categories.GetCategories());
   const handleSelect = (categoryId: string): void => {
     navigate(`/products/${categoryId}`);
   };
@@ -21,7 +19,7 @@ function Categories({ showCategories, closeCategories }: PropsType) {
   return (
     //
     <Drawer anchor="left" open={showCategories} onClose={closeCategories}>
-      <List sx={{ width: "200px" }}>
+      <List sx={{ width: '200px' }}>
         <ListItem>
           <ListItemText primary="Categories" />
         </ListItem>
@@ -29,7 +27,7 @@ function Categories({ showCategories, closeCategories }: PropsType) {
 
         {data?.map((category: Category) => (
           <ListItem
-            sx={{ fontWeight: "700", cursor: "pointer" }}
+            sx={{ fontWeight: '700', cursor: 'pointer' }}
             key={category.id}
             onClick={() => handleSelect(category.id)}
           >

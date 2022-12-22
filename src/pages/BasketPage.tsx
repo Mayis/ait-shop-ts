@@ -1,21 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import {
   basketMessageSelector,
   basketProductsSelector,
   deleteBasket,
   getBasket,
-  purchaseBasket,
-} from "../redux/slices/basketSlice";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+  purchaseBasket
+} from '../redux/slices/basketSlice';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 
-import BasketItem from "../components/BasketItem";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EmptyBasket from "../components/EmptyBasket";
-import Loading from "../components/Loading";
-import PaidIcon from "@mui/icons-material/Paid";
-import Paper from "@mui/material/Paper";
+import BasketItem from '../components/BasketItem';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EmptyBasket from '../components/EmptyBasket';
+import Loading from '../components/Loading';
+import PaidIcon from '@mui/icons-material/Paid';
+import Paper from '@mui/material/Paper';
 
 function BasketPage() {
   const dispatch = useAppDispatch();
@@ -34,19 +34,19 @@ function BasketPage() {
 
   return products ? (
     <>
-      <Container sx={{ marginTop: "100px" }}>
+      <Container sx={{ marginTop: '100px' }}>
         {products.map((item) => (
           <BasketItem item={item} key={item.product.id} />
         ))}
       </Container>
       <Paper
         sx={{
-          width: "95%",
-          height: "200px",
-          margin: "10px auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          width: '95%',
+          height: '200px',
+          margin: '10px auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}
       >
         <Button
@@ -54,7 +54,7 @@ function BasketPage() {
           variant="contained"
           color="error"
           startIcon={<DeleteIcon />}
-          sx={{ margin: "5px" }}
+          sx={{ margin: '5px' }}
         >
           Delete All
         </Button>
@@ -62,7 +62,7 @@ function BasketPage() {
           onClick={purchaseAll}
           variant="contained"
           endIcon={<PaidIcon />}
-          sx={{ margin: "5px" }}
+          sx={{ margin: '5px' }}
         >
           Buy All
         </Button>

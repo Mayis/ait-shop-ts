@@ -1,10 +1,10 @@
-import "../style/style.css";
+import '../style/style.css';
 
-import { LoginType, getUser, userSelector } from "../redux/slices/userSlice";
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { LoginType, getUser, userSelector } from '../redux/slices/userSlice';
+import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const dispatch = useAppDispatch();
@@ -22,21 +22,17 @@ function LoginPage() {
     e.currentTarget.reset();
   };
   useEffect(() => {
-    if (user) navigate("/products/home");
+    if (user) navigate('/products/home');
   }, [user, navigate]);
   const goRegisterPage = () => {
-    navigate("/auth/register");
+    navigate('/auth/register');
   };
   return (
     <div id="fullLogin">
       <div id="loginPart">
         <form onSubmit={handleLogin} className="loginForm">
           <input type="text" name="email" placeholder="write your email" />
-          <input
-            type="password"
-            name="password"
-            placeholder="write your password"
-          />
+          <input type="password" name="password" placeholder="write your password" />
           <button className="signInButton">Sign in</button>
           <p className="toRegister" onClick={goRegisterPage}>
             do you want to register?

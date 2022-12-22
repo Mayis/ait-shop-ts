@@ -1,9 +1,9 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useState } from 'react';
 
-import AppBarMenu from "./AppBarMenu";
-import Categoris from "./Categoris";
-import { useAppDispatch } from "../redux/hooks";
-import { userLogout } from "../redux/slices/userSlice";
+import AppBarMenu from './AppBarMenu';
+import Categoris from './Categoris';
+import { useAppDispatch } from '../redux/hooks';
+import { userLogout } from '../redux/slices/userSlice';
 
 function Header() {
   const dispatch = useAppDispatch();
@@ -14,10 +14,7 @@ function Header() {
   return (
     <>
       <AppBarMenu handleShowCategories={handleShowCategories} />
-      <Categoris
-        showCategories={showCategories}
-        closeCategories={closeCategories}
-      />
+      <Categoris showCategories={showCategories} closeCategories={closeCategories} />
     </>
   );
 }

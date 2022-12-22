@@ -1,7 +1,7 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import AuthSlice from "../../api/slices/auth";
-import { RootState } from "./../store";
+import AuthSlice from '../../api/slices/auth';
+import { RootState } from './../store';
 
 type Info = {
   fullname?: string;
@@ -30,28 +30,28 @@ export type RegisterType =
 const initialState: UserType = {
   loading: false,
   user: null,
-  error: false,
+  error: false
 };
 export const getUser = createAsyncThunk<Info, LoginType>(
-  "user/getUser",
+  'user/getUser',
   async (info: LoginType): Promise<any> => {
     return AuthSlice.Login(info).then((resp) => resp.data);
   }
 );
 export const registerUser = createAsyncThunk(
-  "user/registerUser",
+  'user/registerUser',
   async (info: RegisterType): Promise<any> => {
     return AuthSlice.Register(info).then((resp) => resp.data);
   }
 );
 
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     userLogout(state) {
       state.user = null;
-    },
+    }
   },
   extraReducers(builder) {
     builder
@@ -61,7 +61,7 @@ const userSlice = createSlice({
       .addCase(getUser.fulfilled, (state, action: PayloadAction<Info>) => {
         state.loading = false;
         state.user = action.payload;
-        localStorage.setItem("accessToken", action.payload.token);
+        localStorage.setItem('accessToken', action.payload.token);
       })
       .addCase(getUser.rejected, (state) => {
         state.error = true;
@@ -71,13 +71,13 @@ const userSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action: PayloadAction<Info>) => {
         state.loading = false;
-        localStorage.setItem("accessToken", action.payload.token);
+        localStorage.setItem('accessToken', action.payload.token);
         state.user = action.payload;
       })
       .addCase(registerUser.rejected, (state) => {
         state.error = true;
       });
-  },
+  }
 });
 
 export default userSlice.reducer;

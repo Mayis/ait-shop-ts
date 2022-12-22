@@ -1,12 +1,12 @@
-import "./style/style.css";
+import './style/style.css';
 
-import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 function EmptyBasket() {
   const navigate = useNavigate();
   const handleHomePage = () => {
-    navigate("/products/home");
+    navigate('/products/home');
   };
   return (
     <div className="emptyBasket">

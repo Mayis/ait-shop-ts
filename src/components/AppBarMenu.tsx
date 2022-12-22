@@ -1,15 +1,15 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState } from 'react';
 
-import AppBar from "@mui/material/AppBar";
-import BasicModal from "./BasicModal";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
+import AppBar from '@mui/material/AppBar';
+import BasicModal from './BasicModal';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
 
 type PropsType = {
   handleShowCategories: () => void;
@@ -19,17 +19,17 @@ function AppBarMenu({ handleShowCategories }: PropsType) {
   const navigate = useNavigate();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleHomePage = () => navigate("/products/home");
-  const handleBasketPage = () => navigate("/basket");
+  const handleHomePage = () => navigate('/products/home');
+  const handleBasketPage = () => navigate('/basket');
   return (
     <>
       <Box
         sx={{
           flexGrow: 1,
-          position: "fixed",
+          position: 'fixed',
           top: 0,
           zIndex: 2,
-          width: "100%",
+          width: '100%'
         }}
       >
         <AppBar position="static">
@@ -47,7 +47,7 @@ function AppBarMenu({ handleShowCategories }: PropsType) {
             <Typography
               variant="h6"
               component="div"
-              sx={{ flexGrow: 1, cursor: "pointer" }}
+              sx={{ flexGrow: 1, cursor: 'pointer' }}
               onClick={handleHomePage}
             >
               shop ait
