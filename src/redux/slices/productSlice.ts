@@ -20,6 +20,12 @@ export const getSelectedProduct = createAsyncThunk(
     return ProductsSlice.GetCurrentProduct(id).then((resp) => resp.data);
   }
 );
+export const postComment = createAsyncThunk(
+  'product/postComment',
+  async ({ product_id, body }: { product_id: string; body: string }): Promise<any> => {
+    return ProductsSlice.PostProductComment({ product_id, body }).then((resp) => resp.data);
+  }
+);
 const productSlice = createSlice({
   name: 'product',
   initialState,
@@ -35,6 +41,12 @@ const productSlice = createSlice({
       })
       .addCase(getSelectedProduct.rejected, (state) => {
         state.error = true;
+      })
+      .addCase(postComment.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(postComment.fulfilled, (state, { payload }) => {
+        state.loading = false;
       });
   }
 });
