@@ -7,6 +7,7 @@ import { Items } from '../api/slices/products';
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import { addToBasket } from '../redux/slices/basketSlice';
+import { alertMessage } from '../redux/slices/userSlice';
 import { useAppDispatch } from '../redux/hooks';
 
 type Props = {
@@ -16,6 +17,7 @@ export default function MultiProductCard({ item }: Props) {
   const dispatch = useAppDispatch();
   const handleAddBasket = (id: string) => {
     dispatch(addToBasket(id));
+    dispatch(alertMessage('open'));
   };
   return (
     <Card

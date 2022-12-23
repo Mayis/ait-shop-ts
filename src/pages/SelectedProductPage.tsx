@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import {
   getSelectedProduct,
-  postComment,
+  postReaction,
   selectedProductSelector
 } from '../redux/slices/productSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
@@ -35,25 +37,22 @@ function SelectedProductPage() {
   useEffect(() => {
     dispatch(getSelectedProduct(currentId!));
   }, [currentId]);
-  console.log(currentId, product);
-
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleReaction = (id: string, action: string, type: string) => {
+    dispatch(postReaction({ product_id: id, action, type }));
   };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  console.log(product);
 
   return (
     product && (
       <>
         <Container sx={{ marginTop: '100px' }}>
-          <Card sx={{ display: 'flex', height: '400px' }}>
+          <Card sx={{ display: 'flex' }}>
             <CardMedia
               component="img"
               alt={product.title}
-              sx={{ height: '100%', padding: '10px', objectFit: 'contain' }}
+              sx={{ height: '400px', padding: '10px', objectFit: 'contain' }}
               image={product.src}
             />
             <CardContent sx={{ width: '60%' }}>
@@ -71,8 +70,16 @@ function SelectedProductPage() {
                   ADD TO BASKET
                 </Button>
                 <ButtonGroup variant="contained" sx={{ marginTop: '5px' }}>
-                  <Button startIcon={<ThumbUpIcon />}>Like</Button>
-                  <Button startIcon={<ThumbDownIcon />}>Dislike</Button>
+                  <Button
+                    startIcon={<ThumbUpIcon />}
+                    onClick={() => handleReaction(product.id, 'add', 'like')}>
+                    Like
+                  </Button>
+                  <Button
+                    startIcon={<ThumbDownIcon />}
+                    onClick={() => handleReaction(product.id, 'add', 'dislike')}>
+                    Dislike
+                  </Button>
                 </ButtonGroup>
               </CardActions>
             </CardContent>

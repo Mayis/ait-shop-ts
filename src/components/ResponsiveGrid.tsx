@@ -7,6 +7,7 @@ import { Items } from '../api/slices/products';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Tooltip from '@mui/material/Tooltip';
 import { addToBasket } from '../redux/slices/basketSlice';
+import { alertMessage } from '../redux/slices/userSlice';
 import { useAppDispatch } from '../redux/hooks';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,6 +20,7 @@ export default function ResponsiveGrid({ items }: Props) {
   const navigate = useNavigate();
   const handleAddBasket = (id: string) => {
     dispatch(addToBasket(id));
+    dispatch(alertMessage('open'));
   };
   const handleGoProductPage = (id: string) => {
     navigate(`/products/current/${id}`);

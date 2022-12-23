@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
+import AlertMessage from '../components/AlertMessage';
 import Api from '../api';
 import Loading from '../components/Loading';
 import TopProducts from '../components/TopProducts';
@@ -14,6 +15,7 @@ function MainPage() {
     <>
       <TopSellers tops={data![0]} />
       <TopProducts topOne={data![1]} topTwo={data![2]} />
+      <AlertMessage />
     </>
   );
 }

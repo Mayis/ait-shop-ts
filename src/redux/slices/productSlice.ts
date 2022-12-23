@@ -26,12 +26,30 @@ export const postComment = createAsyncThunk(
     return ProductsSlice.PostProductComment({ product_id, body }).then((resp) => resp.data);
   }
 );
+export const postReaction = createAsyncThunk(
+  'product/postRreaction',
+  async ({
+    product_id,
+    action,
+    type
+  }: {
+    product_id: string;
+    action: string;
+    type: string;
+  }): Promise<any> => {
+    return ProductsSlice.PostProductReact({ product_id, action, type }).then((resp) => ({
+      action,
+      type
+    }));
+  }
+);
 const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // get product case
       .addCase(getSelectedProduct.pending, (state) => {
         state.loading = true;
       })
@@ -42,6 +60,7 @@ const productSlice = createSlice({
       .addCase(getSelectedProduct.rejected, (state) => {
         state.error = true;
       })
+      // comment case
       .addCase(postComment.pending, (state) => {
         state.loading = true;
       })
@@ -49,6 +68,16 @@ const productSlice = createSlice({
         state.loading = false;
       })
       .addCase(postComment.rejected, (state) => {
+        state.error = true;
+      })
+      // reaction case
+      .addCase(postReaction.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(postReaction.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(postReaction.rejected, (state) => {
         state.error = true;
       });
   }

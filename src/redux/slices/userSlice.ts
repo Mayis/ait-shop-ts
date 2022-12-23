@@ -13,6 +13,7 @@ type UserType = {
   loading: boolean;
   user: null | Info;
   error: boolean;
+  message: boolean;
 };
 export type LoginType =
   | {
@@ -30,7 +31,8 @@ export type RegisterType =
 const initialState: UserType = {
   loading: false,
   user: null,
-  error: false
+  error: false,
+  message: false
 };
 export const getUser = createAsyncThunk<Info, LoginType>(
   'user/getUser',
@@ -51,6 +53,13 @@ const userSlice = createSlice({
   reducers: {
     userLogout(state) {
       state.user = null;
+    },
+    alertMessage(state, { payload }) {
+      if (payload === 'open') {
+        state.message = true;
+      } else {
+        state.message = false;
+      }
     }
   },
   extraReducers(builder) {
@@ -81,6 +90,7 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const { userLogout } = userSlice.actions;
+export const { userLogout, alertMessage } = userSlice.actions;
 export const userSelector = (state: RootState) => state.user.user;
 export const tokenSelector = (state: RootState) => state.user.user?.token;
+export const alertSelector = (state: RootState) => state.user.message;
